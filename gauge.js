@@ -800,8 +800,6 @@ var Gauge = function( config) {
 			th = 0.12 * max
 		;
 
-		ctx.save();
-
 		ctx.fillStyle = config.colors.value;
 		ctx.textAlign = "center";
 		ctx.fillText( text, -x, y + 7);
