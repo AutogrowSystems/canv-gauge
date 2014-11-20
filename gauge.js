@@ -66,6 +66,8 @@ var Gauge = function( config) {
 			title      : '#888',
 			units      : '#888',
 			numbers    : '#444',
+			value      : "#444",
+			band       : false,
 			needle     : { start : 'rgba(240, 128, 128, 1)', end : 'rgba(255, 160, 122, .9)' }
 		},
 		highlights  : [{
@@ -400,14 +402,25 @@ var Gauge = function( config) {
 
 		ctx.beginPath();
 		ctx.arc( 0, 0, r0, 0, Math.PI * 2, true);
-		ctx.fillStyle = lgrad( '#ddd', '#aaa', r0);
+
+		if ( config.colors.band === false ) {
+			ctx.fillStyle = lgrad( '#ddd', '#aaa', r0);
+		} else {
+		  ctx.fillStyle = config.colors.band;
+		}
 		ctx.fill();
 
 		ctx.restore();
 
 		ctx.beginPath();
 		ctx.arc( 0, 0, r1, 0, Math.PI * 2, true);
-		ctx.fillStyle = lgrad( '#fafafa', '#ccc', r1);
+
+		if ( config.colors.band === false ) {
+			ctx.fillStyle = lgrad( '#fafafa', '#ccc', r1);
+		} else {
+			ctx.fillStyle = config.colors.band
+		}
+
 		ctx.fill();
 
 		ctx.beginPath();
