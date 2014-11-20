@@ -552,7 +552,8 @@ var Gauge = function( config) {
 		}
 
 		ctx.save();
-		ctx.font = 24 * (max / 200) + "px Arial";
+		var fontsize = 40 * (max / 200)
+		ctx.font = "bold " + fontsize + "px Arial";
 		ctx.fillStyle = config.colors.title;
 		ctx.textAlign = "center";
 		ctx.fillText( config.title, 0, -max / 4.25);
