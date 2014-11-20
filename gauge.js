@@ -775,10 +775,11 @@ var Gauge = function( config) {
 	function drawValueBox() {
 		ctx.save();
 		
-		ctx.font = 40 * (max / 200) + "px Led";
+		var fontsize = 70 * (max / 200);
+		ctx.font = "bold " +fontsize + "px Arial";
 
 		var
-			text = padValue( value),
+			text = value,
 			tw   = ctx.measureText( '-' + padValue( 0)).width,
 			y = max - max / 100 * 33,
 			x = 0,
@@ -787,46 +788,9 @@ var Gauge = function( config) {
 
 		ctx.save();
 
-		roundRect(
-			-tw / 2 - 0.025 * max,
-			y - th - 0.04 * max,
-			tw + 0.05 * max,
-			th + 0.07 * max,
-			0.025 * max
-		);
-
-		var grd = ctx.createRadialGradient(
-			x,
-			y - 0.12 * max - 0.025 * max + (0.12 * max + 0.045 * max) / 2,
-			max / 10,
-			x,
-			y - 0.12 * max - 0.025 * max + (0.12 * max + 0.045 * max) / 2,
-			max / 5
-		);
-
-		grd.addColorStop( 0, "#888");
-	    grd.addColorStop( 1, "#666");
-
-		ctx.strokeStyle = grd;
-		ctx.lineWidth = 0.05 * max;
-		ctx.stroke();
-
-		ctx.shadowBlur  = 0.012 * max;
-		ctx.shadowColor = 'rgba(0, 0, 0, 1)';
-
-		ctx.fillStyle = "#babab2";
-		ctx.fill();
-		
-		ctx.restore();
-
-		ctx.shadowOffsetX = 0.004 * max;
-		ctx.shadowOffsetY = 0.004 * max;
-		ctx.shadowBlur    = 0.012 * max;
-		ctx.shadowColor   = 'rgba(0, 0, 0, 0.3)';
-
-		ctx.fillStyle = "#444";
+		ctx.fillStyle = config.colors.value;
 		ctx.textAlign = "center";
-		ctx.fillText( text, -x, y);
+		ctx.fillText( text, -x, y + 7);
 
 		ctx.restore();
 	};
